@@ -1,0 +1,135 @@
+//This program runs from File: Workstation.java
+
+Hello, TRL system Worker.
+Please enter 'M1' (Manager_ID) or 'W1' (Worker_ID)
+
+Please enter your Worker ID# >> M1
+
+//Note: The user can enter 'M1' for managerial privilages, like placing holds 
+//      on patron accounts, or 'W1' for standard operations.
+
+Worker M1 is logged in.
+
+Designing SQl 
+Designing SQl 
+
+--- Worker M1  --------------------------
+
+
+--- Please enter the Patron's ID number ----
+
+    Enter 'P1' or 'P2' or 'P3' or 'P4' >> P1
+
+//Note: The user chooses between four possible inputs representing four different
+//      patrons - P1, P2, P3, or P4.
+
+Eric has no holds on account.
+
+Patron Name: Eric
+Patron classes: []
+
+Patrons Required Textbooks: null
+
+
+----------------------------------------
+                MENU                    
+----------------------------------------
+
+--- 1 - Patron check out ---------------
+--- 4 - Quit ---------------------------
+>>1
+
+//Note: To continue checkout operations, the user should enter '1'
+
+
+---------------------------------------------------------------------
+                  Begin checkout - Please enter the copy ID
+---------------------------------------------------------------------
+
+(You can enter 'copy#1','copy#2'...'copy#5' )
+     Enter copy ID >> copy#1
+
+//Note: The user can enter five different inputs here - copy#1, copy#2, copy#3, 
+//      copy#4, or copy#5. The first three copys are availible for checkout. 
+
+
+ Check in/out another book? 'Y' - Yes or 'N' - No
+>> N
+
+Patron Name: Eric
+Patron classes: []
+
+Patrons Required Textbooks: null
+
+
+Patrons checkedOut books: [
+COPY TITLE: Designing SQl
+COPY ID: copy#1]
+
+
+All books are due on 2017-07-12
+
+//Note: This output shows that patron Eric has now checkedout copy#1, "Designing SQL"
+//      The due date is July, 12 2017.
+
+----------------------------------------
+                MENU                    
+----------------------------------------
+
+--- 1 - Patron check out ---------------
+--- 2 - Patron check in ----------------
+--- 3 - Place a hold on all patrons ----
+--- 4 - Quit ---------------------------
+>>2
+
+//Note: The user should enter 2 in order to check in books.
+
+---------------------------------------------------------------------
+                  Begin checkout - Please enter the copy ID
+---------------------------------------------------------------------
+
+(You can enter 'copy#1','copy#2'...'copy#5' )
+     Enter copy ID >> copy#1
+
+Patron Name: Eric
+Patron classes: []
+
+Patrons Required Textbooks: null
+
+
+Patrons checkedOut books: [
+COPY TITLE: Designing SQl
+COPY ID: copy#1]
+
+
+All books are due on 2017-07-12
+
+
+---------------------------------------------------------------------
+                  Begin check in - Please enter the copy ID
+---------------------------------------------------------------------
+
+(You can enter 'copy#1','copy#2'...'copy#5' )
+     Enter copy ID >> copy#1
+
+Patrons checkedOut books: []
+
+ 
+ 
+ Check in/out another book? 'Y' - Yes or 'N' - No
+>> n
+
+
+----------------------------------------
+                MENU                    
+----------------------------------------
+
+--- 1 - Patron check out ---------------
+--- 2 - Patron check in ----------------
+--- 3 - Place a hold on all patrons ----
+--- 4 - Quit ---------------------------
+>>4
+ 
+M1 has exited the system.
+ 
+
