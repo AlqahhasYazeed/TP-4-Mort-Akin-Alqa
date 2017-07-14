@@ -25,7 +25,7 @@ public class Workstation
 	public Workstation(String workerID) 
 	{
 		
-		//this.patron_ID_entered = patronID;
+		
 		this.worker_ID = workerID;
 		
 	}
@@ -36,8 +36,7 @@ public class Workstation
 		Gui g = new Gui();
 		
 		//Print out the Worker_ID
-		//Goofy output is coming from the toString() method from Textbook class.
-		//I think it might be originating from the FakeDB class.
+	
 		g.outputWorkerID(worker_ID);
 			
 		//Worker enters Patron id
@@ -108,7 +107,7 @@ public class Workstation
 	
 	public Patron pay(double fines, Patron p, Copy copyInput) //fines = $55.00
 	{
-		//char c.equals("");
+		
 		Gui g = new Gui();
 		
 		String pay = g.payOutput();
@@ -128,22 +127,20 @@ public class Workstation
 			
 				//set fines to 0 in the patron class
 				p.setFines(0);
-				//p.getCopiesOut().remove(copyInput.getCopyID());
+				
 			
 				//remove fine from p.copiesOut  HERE.....
 				 p.removeFromListOfCopiesOut(copyInput);
 				
 				 
 				//Remove the hold from the specific copy
-				//Note: I couldn't resent the checkout date to a null value
-				// because that isn't allowed, so this will introduce bugs.
-				//setCopyStateToCheckedIn(p, copyInput);
+			
 			
 				
 			}
 			
 			//fine was not paid in full
-			else  //$55.00 - 40 = $15.00
+			else 
 			{
 				
 				double remaining_fines = fines - payment;
@@ -171,7 +168,6 @@ public class Workstation
 	{
 		FakeDB db = new FakeDB();
 		
-		//Copy copy = db.getCopy(""+copyInput.getText_title());
 		
 		//set the copies outTo to a null Patron.
 		
@@ -190,8 +186,6 @@ public class Workstation
 		 p.removeFromListOfCopiesOut(copyInput);
 		
 		//put the copy back into inventory
-		
-		//((ArrayList<Copy>) db.getInventory()).add(copyInput);
 		
 	return p;
 	}
@@ -244,12 +238,11 @@ public class Workstation
 			
 			c.setOutTo(p);
 			
-			//patron data is not set. Error here!!!!!!!
-			//p.checkCopyOut(c);
+			
 			
 			//Both of these two methods do the same thing....
 			p.getCopiesOut().add(c);
-			//p.setCopyOut(c);
+			
 			
 			FakeDB db = new FakeDB();
 			
@@ -258,7 +251,6 @@ public class Workstation
 			db.getInventory().get(c.getCopyID()).setHold(false);
 			db.getInventory().get(c.getCopyID()).setOutTo(p);
 			//Due date should be set inside the Textbook constructor
-			//db.getInventory().get(c.getCopyID()).setDue_date(due_date);
 			
 		}
 		return p;
@@ -275,8 +267,6 @@ public class Workstation
 
 		g.outputPatronsCheckedOutBooks(p);
 		
-		//This method doesn't run
-		//output = g.report_CheckOut_States(p);
 		
 		//output due_date
 		LocalDate date = p.getCopiesOut().get(0).get_Due_date();
@@ -379,7 +369,7 @@ public class Workstation
 		
 		String myWorkerID = myWorker.getUsersWorker_ID();
 		
-		//System.out.println("*****");
+		
 		//Strange output "Designing SQL" originates here....
 		
 		myWorker.setWorker_ID(myWorkerID);

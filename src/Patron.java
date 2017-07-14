@@ -1,4 +1,4 @@
-//Heather comments that the ArrayList data type comes from this library.
+// ArrayList data type comes from this library.
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,14 +21,12 @@ public class Patron
 	private Boolean patron_hold = false;
 	private double fines = 0;
 	
-	//ArrayList is a dynamic array that can change size whenever we want.
 	//This ArrayList holds a bunch of CHECKED OUT Copy objects.
 	private ArrayList<Copy> copiesOut;
 	private ArrayList<Cla_ss> classes;	
 	private ArrayList<Textbook> books_required;
 	
-	//
-	//long data type to represent an unsigned 64-bit long, which has a minimum value of 0 and a maximum value of 264-1
+
 	private String phone;
 	
 	private String local_address;
@@ -61,10 +59,10 @@ public class Patron
 	{
 		//See FakeDB.java to see where data comes from.
 		
-		this.patron_ID = patron_ID; //should = "p3"
-		this.patron_name = patron_name; //should = "Temi"
+		this.patron_ID = patron_ID; 
+		this.patron_name = patron_name; 
 		
-		//no data here. No copies checked out yet.
+	
 		this.copiesOut = new ArrayList<Copy>();	
 		this.classes = new ArrayList<Cla_ss>();
 		this.books_required = new  ArrayList<Textbook>();
@@ -80,12 +78,12 @@ public class Patron
 		this.classes = new ArrayList<Cla_ss>();	
 		this.classes.add(s1);
 		
-		//Fetch requred texts for class 63002
+		//Fetch requred texts 
 		this.books_required.add(t);
 		
-		this.setPhone(phoneNumber); //should be "6513333333"
+		this.setPhone(phoneNumber); 
 		
-		this.setLocal_address(local_address); //"123 St thomas blvd."
+		this.setLocal_address(local_address); 
 		this.perm_address = perm_address;
 		this.email  = email;
 		this.term = term;
@@ -109,8 +107,7 @@ public class Patron
 		//These has default capacity 10. It will resize when it reaches capacity.
 		this.copiesOut = new ArrayList<Copy>();	
 		this.classes = new ArrayList<Cla_ss>();	
-		//classes = new int[10];
-		//num_of_classes = 0;
+	
 		
 		phone = "" + 0;
 		
@@ -260,22 +257,7 @@ public class Patron
 	{
 		this.setclass(e);
 	}
-//	public String classStrings()
-//	{
-//		String classes = "";
-//		
-//		for (int i = 0; i < this.classes.length; i++)
-//		{
-//			if(this.classes[i] != 0)
-//			{
-//				classes = classes.concat(" "+ this.classes[i] + "/n");
-//			}
-//		}
-//		
-//		return classes;
-//	}
-	
-// Generate getters and setters using Eclipse Source menu.
+
 	
 	public void setclass(int class_ID) 
 	{
@@ -490,12 +472,12 @@ public class Patron
 
 
 
-	//What does this mean? See requirements.
+
 	
-	//Temi wrote this.
+
 	public boolean checkCopyIn(Copy c)
 	{
-		// finish this
+	
 		
 		boolean bookReturned = false;
 		
@@ -520,33 +502,25 @@ public class Patron
 		
 		StdOut.println("");
 		StdOut.println("" + c.toString());
-		//StdOut.println("" + c.getOutToID());
 		StdOut.println("This book will be returned to the rental shop by Patron named " + patron_name_checked_out_to + ". His ID # is " + c.getOutToID() + "."  );
 		StdOut.println("");
 		
-		//This method used the wrong paramenter. That was the error.
-		//bookReturned = this.getCopiesOut().remove(book_ID_for_removal);
 		
 		bookReturned = this.getCopiesOut().remove(c);
 		
-		//set the value of Copy.outTo to null because no one has it checked out.
-		//c.setOutTo("");
-		
-		
-		//if the book is still in Erics arrayList, then return false, else 
-		//   return true, indicating that Eric gave the book back to the rental office.
 	
+		
+		
+		
 		bookReturned = this.CopyisInArrayList(c);	
 		bookReturned = !(bookReturned);
 		
 		return bookReturned;
 	}
 
-	//Heather wrote this.
 	@Override
 	public boolean equals(Object o)
 	{
-		// finish this: two are equals iff same patron ID
 		
 		Patron p = (Patron) o;
 		
@@ -558,130 +532,17 @@ public class Patron
 		return false;
 	}
 
-	//Heather wrote this
+
 	public String toString()
 	{
-		// finish this: return basic Patron info as String
-		
+				
 		String p = "";
 		
 		p = p.concat("PATRON ID: " + this.getPatron_ID() + "\n" + "PATRON NAME: " + this.getPatron_name() + "\n" + "PATRON'S CHECKED OUT BOOKS: " + this.getCopiesOut() + "\n");
 		
-		// Heather says test p1.toString() in main.
 		
 		return p;
 	}
 	
-//	//NOTE: Level WANTS OUTPUTS LIKE: StdOut.println("c1" );
-//	public static void main(String[] args)
-//	{
-//		Patron p3 = new Patron("P3", "EricLevel");
-//		
-//		//Can I put p3 into the hashmap here....
-//	
-//		
-//		//OUTPUTTING TO THE SCREEN.....
-//		
-//		//This is how Ali Navqui liked output:
-//		//System.out.println("Hello.");
-//		
-//		//This is how Eric level wants us to output:
-//		//StdOut.println("Hello.");
-//		
-//		
-//		//1st output
-//		//System.out.println("We created a Patron object using the Patron constructor. \n");
-//		StdOut.println("We created a Patron object using the Patron constructor. \n");
-//		
-//		//2nd output - confirms that toString() works
-//		//System.out.println("" + p3);
-//		
-//
-//		StdOut.println("----------------------------------------");
-//		StdOut.println("" + p3);
-//		
-//		//Patron p1 = new Patron();
-//
-//		//3rd output 
-//		//System.out.println("getPatron() from FakeDB " + "\n" +  "----------------------" + "\n" + p1);
-//		//System.out.println("");
-//		
-//		
-//		FakeDB database = new FakeDB();
-//		//p1 = database.getPatron("P1");
-//		
-//		Patron p1 = database.getPatron("P1");
-//		
-//		p1.toString();
-//		
-//		StdOut.println("getPatron() from FakeDB " + "\n" +  "------------------------" + "\n" + p1.toString());
-//		//StdOut.println("");
-//		
-//		//4th output 
-//		Copy c1 = FakeDB.getCopy("C1");
-//		//System.out.println("getCopy() from FakeDB " + "\n" +  "----------------------" + "\n" + c1);
-//		//System.out.println("");
-//		StdOut.println("getCopy() of book from FakeDB " + "\n" +  "-----------------------------" + "\n" + c1);
-//		StdOut.println("");
-//		
-//		//5th output - Get a second book from the database
-//		Copy c2 = FakeDB.getCopy("C2");
-//		StdOut.println("getCopy() of a second book from FakeDB " + "\n" +  "--------------------------------------" + "\n" + c2);
-//		StdOut.println("");
-//		
-//		//Build tests????
-//		
-//		//Note on refractoring:
-//		//Before refractoring, build a solid test suite. They must be self checking. (Fowler, p8)
-//	
-//		///////////////////////////////////////////////////////////
-//		//	REQUIREMENTS TEST
-//		//////////////////////////////////////////////////////////
-//		
-//		//test #1. Eric has no books in his arrayList.
-//		StdOut.println("");
-//		
-//		StdOut.println("Eric goes to the rental office to checkout a book." );
-//		StdOut.println("This is Eric's list of books before checkout ...");
-//		StdOut.println("");
-//
-//		StdOut.println("--------------------------");
-//		StdOut.println("BEFORE CHECKOUT OF TEXTBOOK: ");
-//		StdOut.println("--------------------------");
-//		StdOut.println("" + p1.toString());
-//		
-//		//CHECKOUT METHODS HERE - Checkout 2 books
-//		
-//		//test #2. Eric has ONE book in his arrayList.
-//		StdOut.println("---------------------------------");
-//		StdOut.println("AFTER CHECKOUT OF FIRST TEXTBOOK:");
-//		StdOut.println("---------------------------------");
-//		//StdOut.println("" + p1.getName() + "'s checked out books: " + p1.getCopiesOut());
-//		StdOut.println("A book was checked out: " + p1.checkCopyOut(c1));
-//		StdOut.println("");
-//		StdOut.println("" + p1.toString());
-//		StdOut.println("");
-//		
-//		//test #3. Eric has two bookS in his arrayList.
-//		StdOut.println("------------------------------------");
-//		StdOut.println("AFTER CHECKOUT OF A SECOND TEXTBOOK:");
-//		StdOut.println("------------------------------------");
-//		//StdOut.println("" + p1.getName() + "'s checked out books: " + p1.getCopiesOut());
-//		StdOut.println("A book was checked out: " + p1.checkCopyOut(c2));
-//		StdOut.println("");
-//		StdOut.println("" + p1.toString());
-//		
-//		//CHECKOUT METHODS HERE - Return (checkIn) 1 book to the rental office.
-//		
-//		StdOut.println("------------------------------------");
-//		StdOut.println("AFTER RETURNING THE SECOND TEXTBOOK:");
-//		StdOut.println("------------------------------------");
-//		StdOut.println("A book was checked in: " + p1.checkCopyIn(c2));
-//		StdOut.println("");
-//		StdOut.println("" + p1.toString());
-//		
-//		
-//		
-//	}	
 
 }

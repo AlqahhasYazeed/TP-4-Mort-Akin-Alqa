@@ -286,26 +286,7 @@ public class Gui
 	{
 		String output = ("");
 		
-		//if (!(p.getPatron_name().equals(null)) || !(p.getPatron_ID().equals(null)))
-		{
 		
-//		output = output.concat("   " + p.getPatron_name() + " " + p.getPatron_ID() + "\n");
-		
-		}
-		
-	//	if (!(p.getEmail().equals(null)) || !(p.getPhone().equals(null)))
-		{
-//			output = output.concat("Email: " + p.getEmail() + "Phone: " + p.getPhone() + "\n");
-//			output = output.concat("\n");
-		}
-		
-	//	if (p.getCopiesOut() != null)
-		{
-//			output = output.concat("" + p.checkHasHolds() + "\n");
-//			output = output.concat("" + p.getCopiesOut() + "\n");
-		}
-		
-		//outputPatronSchedule(p) ;
 		
 		return output;
 	}

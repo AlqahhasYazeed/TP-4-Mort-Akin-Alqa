@@ -4,11 +4,6 @@ public class Worker
 	String worker_ID;
 	Boolean isManager = false;
 
-//	public Worker()
-//	{
-//		
-//	}
-
 	public Worker(String worker_ID)
 	{
 		this.worker_ID = worker_ID;

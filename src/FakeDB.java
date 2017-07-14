@@ -74,10 +74,6 @@ public class FakeDB
 		textbookStore.put("60501", t1);
 		
 		LocalDate lastSemester = LocalDate.of(2016, 01, 14);
-		//public Copy(Textbook t, String copyID, Patron outTo, boolean checked_out, boolean overdue, boolean hold, LocalDate check_out_date)
-		//Copy copy_4 = new Copy(t1,"copy#4", "P4", true, true, true, lastSemester);
-		//Copy(Textbook t, String copyID, Patron outTo, boolean checked_out, boolean overdue, boolean hold, LocalDate check_out_date)
-		//Copy copy_5 = new Copy(t1,"copy#5",null, false, false, false, null);
 		
 		Cla_ss c1 = new Cla_ss("60501","Technical Communications","Summer2017",LocalDate.now(),LocalDate.now(),10,"SIES", true,t1);
 		Cla_ss c2 = new Cla_ss("63002","Database Design","Summer2017",LocalDate.now(),LocalDate.now(),15,"SIES", true,t2 );
@@ -87,7 +83,6 @@ public class FakeDB
 		Copy copy_1 = new Copy("copy#1",t2,null, false, false, false, null);
 		Copy copy_2 = new Copy("copy#2",t2,null, false, false, false, null);
 		Copy copy_3 = new Copy("copy#3",t2,null, false, false, false, null);
-		//copy_1.setOutTo(yazeed);
 		//copy_2
 		//copy_3
 		inventory.put("copy#1",copy_1);
@@ -123,26 +118,19 @@ public class FakeDB
 		patronStore.put("P4",  yazeed);
 
 //CREATE PATRON HEATHER - has hold, no classes
-//WHY DOESN'T THIS SHOW A HOLD?????????????? Its the same as Yazeed's
 //The constructor doesn't create a hold. That has to happen with a method 
 //of the manager class in Workstation. 
 
 		Patron heather = new Patron("P2", "Heather");
 		Copy copy_5 = new Copy("copy#5",t3,heather, true, true, true,LocalDate.of(2014, 4, 1));
 		copy_5.checkIfOverdue();
-		//	heather.setCopyOut(copy_5);
 		copy_5.setChecked_out(true);
-	//	heather.
-	//	heather.setCopyOut(copy_5);
-		//Here, copy_5 should set a hold
+
 		inventory.put("copy#5", copy_5);
 		
 
 		patronStore.put("P2", new Patron("P2", "Heather"));
 		
-		//copyStore.put("C2", new Copy("C2", "More Fun with Objects"));
-		//copyStore.put("C3",new Copy("C3", "Java Programming") );
-		//copyStore.put("C4", new Copy("C4", "Pattern-Oriented Software Architecture"));
 			
 //		@SuppressWarnings("deprecation")
 		//All Textbooks are currently set to have a due_date = Sept 1, 2017
@@ -165,20 +153,6 @@ public class FakeDB
 	}
 	//HASHMAPS
 	//https://www.youtube.com/watch?v=hgawTLk0o3Y
-//	public boolean equals(Object obj)
-//	{
-//		if (obj !=null && obj instanceof Patron)
-//		{
-//			String patron_ID = ((Patron)obj).getPatron_ID();
-//			String patron_name = ((Patron)obj).getPatron_name();
-//		
-//		if (patron_ID !=null && patron_ID.equals(this.patron_ID))
-//		{
-//			return true;
-//		}
-//	}
-//		return false;
-//	}
 	
 	//TEST THIS FUNCTION!!!!
 	public void set_All_Patron_Hold()
@@ -256,9 +230,7 @@ public class FakeDB
 			System.out.println("The textbookStore DOES NOT contain any books for class_id " + class_id);
 	}
 	
-	
-	//Heather wrote this. It isn't exactly right. P13 should count the number of elements in the hashmap and increment.
-	public static void putPatron(Object patron)
+		public static void putPatron(Object patron)
 	{
 		Patron p = (Patron) patron;
 				
