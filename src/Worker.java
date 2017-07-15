@@ -1,8 +1,14 @@
+import java.util.Map;
 
 public class Worker 
 {
 	String worker_ID;
 	Boolean isManager = false;
+
+//	public Worker()
+//	{
+//		
+//	}
 
 	public Worker(String worker_ID)
 	{
@@ -11,24 +17,22 @@ public class Worker
 	
 	public String getUsersWorker_ID() 
 	{
-		String id = "";
+		Gui g = new Gui();
+		String id = g.getUsersWorker_ID();
 		
-		StdOut.print( "Hello, TRL system Worker.\n"+"Please enter 'M1' (Manager_ID) or 'W1' (Worker_ID)\n" + "\n" + "Please enter your Worker ID# >> "  );
-		StdOut.println("");
-		id = StdIn.readLine();
-		
-		StdOut.print("Worker " + id + " is logged in.\n");
-		StdOut.print("\n");
 		
 		if(id.equals("M1"))
 		{
 			this.isManager = true;
 		}
+		
 		else
 			this.isManager = false;
 		
 		return id;
 	}
+	
+
 
 	public String getWorker_ID() 
 	{
@@ -48,6 +52,8 @@ public class Worker
 	{
 		return this.isManager;
 	}
+
+
 	
 
 }

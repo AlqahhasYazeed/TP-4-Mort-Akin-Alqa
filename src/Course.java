@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Cla_ss 
+public class Course 
 {
 
 	String class_ID;
@@ -20,7 +20,7 @@ public class Cla_ss
 
 	
 	
-	public Cla_ss() 
+	public Course() 
 	{
 		
 		this.class_ID = "";
@@ -39,7 +39,7 @@ public class Cla_ss
 		
 	}
 	
-	public Cla_ss(String id,String name,String term,LocalDate start_date,LocalDate end_date,int max_num,String dept, boolean nxt_sem, Textbook text )
+	public Course(String id,String name,String term,LocalDate start_date,LocalDate end_date,int max_num,String dept, boolean nxt_sem, Textbook text )
 	{
 		
 		
@@ -67,15 +67,19 @@ public class Cla_ss
 		
 		return classString;
 	}
+	
 	public void addBook(Textbook t)
 	{
 		this.books.add(t);
 	}
+	
 	public void getBooks()
 	{
+		Gui g = new Gui();
+		
 		for(int i = 0; i < books.size(); i++)
 		{
-			System.out.println(""+ this.books.get(i) + " ");
+			g.outputBooks(this.books.get(i));
 		}
 	}
 	

@@ -21,6 +21,8 @@ public class Copy extends Textbook
 	private boolean hold = false;
 	
 	//Due date is set to August 1st for all instances of Textbook and Copy 
+	//(because it inherits from Textbook)
+	//private LocalDate due_date = LocalDate.of(2017,8,30);
 	private LocalDate date_Of_CheckOut;
 	LocalDate today = LocalDate.now();
 	
@@ -43,7 +45,9 @@ public class Copy extends Textbook
 		this.class_ID = t.getClass_ID();   //For sies 635, section 7 --> class_ID = 63507
 		this.price_if_lost = t.getPrice_if_lost();
 		//All Textbooks are currently set to have a due_date = August 30th, 2017
-		this.due_date = t.getDue_date();		
+		this.due_date = t.getDue_date();
+		//this.overDue = false;
+		
 		
 	}
 	public Copy(String copyID,Textbook t, Patron outTo, boolean checked_out, boolean overdue, boolean hold, LocalDate check_out_date)
@@ -168,17 +172,20 @@ public class Copy extends Textbook
 		return this.getText_title();
 	}
 
+//	public void setTitle(String title) 
+//	{
+//		this.t = title;
+//	}
 
-
-	public Patron getOutTo() 
-	{
-		if (this.outTo.equals(null))
-		{
-			return null;
-		}
-		
-		return outTo;
-	}
+//	public Patron getOutTo() 
+//	{
+//		if (this.outTo.equals(null))
+//		{
+//			return null;
+//		}
+//		
+//		return outTo;
+//	}
 
 	public String getOutToID() 
 	{
@@ -192,6 +199,7 @@ public class Copy extends Textbook
 		this.outTo = outTo;
 	}
 
+	// Heather wrote this.
 	public String toString()
 	{
 		
@@ -199,7 +207,10 @@ public class Copy extends Textbook
 		
 		book = book.concat("\nCOPY TITLE: " + this.getTitle() + "\n" + "COPY ID: " + getCopyID());
 		
-
+//		if (!(getOutToID().equals(null)))
+//		{
+//			book = book.concat("COPY CHECKED OUT TO: " + getOutToID());
+//		}
 		
 		return book; 
 	}
@@ -220,5 +231,30 @@ public class Copy extends Textbook
 		return false;
 	}
 
-	//NOTE: HE WANTS OUTPUTS LIKE: StdOut.println("c1" )
+	//NOTE: HE WANTS OUTPUTS LIKE: StdOut.println("c1" );
+//	public static void main(String[] args)
+//	{
+//		Copy c1 = new Copy("C1", "Fun with Objects");
+//		Patron p1 = new Patron("Eric", "P47");
+//
+//		//This line print the first output.
+//		StdOut.println("c1" + "\n" + "---");
+//		System.out.println(c1);
+//		
+//		StdOut.println("");
+//		
+//		//This line print the second output.
+//		StdOut.println("p1" + "\n" + "---");
+//		System.out.println(p1);
+//		
+//		Copy c2 = FakeDB.getCopy("C2");
+//		
+//		//Heather wrote this.
+//		//This line print the second output. We can see that they are almost identical.
+//		StdOut.println("c1" + "\n" + "---" + "\n" + c1.toString() + "\n");
+//		
+//		
+//		
+//		
+//	}
 }

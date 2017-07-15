@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class Workstation 
 {
@@ -25,7 +26,7 @@ public class Workstation
 	public Workstation(String workerID) 
 	{
 		
-		
+		//this.patron_ID_entered = patronID;
 		this.worker_ID = workerID;
 		
 	}
@@ -36,7 +37,8 @@ public class Workstation
 		Gui g = new Gui();
 		
 		//Print out the Worker_ID
-	
+		//Goofy output is coming from the toString() method from Textbook class.
+		//I think it might be originating from the FakeDB class.
 		g.outputWorkerID(worker_ID);
 			
 		//Worker enters Patron id
@@ -107,7 +109,7 @@ public class Workstation
 	
 	public Patron pay(double fines, Patron p, Copy copyInput) //fines = $55.00
 	{
-		
+		//char c.equals("");
 		Gui g = new Gui();
 		
 		String pay = g.payOutput();
@@ -127,20 +129,22 @@ public class Workstation
 			
 				//set fines to 0 in the patron class
 				p.setFines(0);
-				
+				//p.getCopiesOut().remove(copyInput.getCopyID());
 			
 				//remove fine from p.copiesOut  HERE.....
 				 p.removeFromListOfCopiesOut(copyInput);
 				
 				 
 				//Remove the hold from the specific copy
-			
+				//Note: I couldn't resent the checkout date to a null value
+				// because that isn't allowed, so this will introduce bugs.
+				//setCopyStateToCheckedIn(p, copyInput);
 			
 				
 			}
 			
 			//fine was not paid in full
-			else 
+			else  //$55.00 - 40 = $15.00
 			{
 				
 				double remaining_fines = fines - payment;
@@ -168,6 +172,7 @@ public class Workstation
 	{
 		FakeDB db = new FakeDB();
 		
+		//Copy copy = db.getCopy(""+copyInput.getText_title());
 		
 		//set the copies outTo to a null Patron.
 		
@@ -186,6 +191,8 @@ public class Workstation
 		 p.removeFromListOfCopiesOut(copyInput);
 		
 		//put the copy back into inventory
+		
+		//((ArrayList<Copy>) db.getInventory()).add(copyInput);
 		
 	return p;
 	}
@@ -238,11 +245,12 @@ public class Workstation
 			
 			c.setOutTo(p);
 			
-			
+			//patron data is not set. Error here!!!!!!!
+			//p.checkCopyOut(c);
 			
 			//Both of these two methods do the same thing....
 			p.getCopiesOut().add(c);
-			
+			//p.setCopyOut(c);
 			
 			FakeDB db = new FakeDB();
 			
@@ -251,6 +259,7 @@ public class Workstation
 			db.getInventory().get(c.getCopyID()).setHold(false);
 			db.getInventory().get(c.getCopyID()).setOutTo(p);
 			//Due date should be set inside the Textbook constructor
+			//db.getInventory().get(c.getCopyID()).setDue_date(due_date);
 			
 		}
 		return p;
@@ -267,17 +276,19 @@ public class Workstation
 
 		g.outputPatronsCheckedOutBooks(p);
 		
-		
 		//output due_date
-		LocalDate date = p.getCopiesOut().get(0).get_Due_date();
+		Textbook text = new Textbook();
+		LocalDate date = text.getDue_date();
+		
+		//LocalDate date = p.getCopiesOut().get(0).get_Due_date();
+		
 		g.output_due_date(date);
-		
-		
+			
 	}
 
 	
 	
-	public Patron menuProcess(int selection, Patron p, String workerID)
+	public Patron menuProcess(int selection, Patron p, Worker myWorker)
 	{
 		Gui g  = new Gui();
 		
@@ -304,20 +315,82 @@ public class Workstation
 		
 		else if (selection == 3)
 		{
-		
+			
+			Boolean manager = myWorker.isManager();
+			
+			//output all current holds
+			outputPatronHolds();
+			System.out.println("");
+			//System.out.println("myWorker.isManager() = " + myWorker.isManager());
+			
+			if (manager == true)
+			{
+				
+				((Manager) myWorker).set_All_Patron_Hold();
+				System.out.println("");
+				outputALLPatronHolds();
+				//outputPatronHolds();
+				
+				
+			}
+			else
+			{
+				g.outputNoManagerialAuthority();
+			}
 		}
 		
 //  4 - quit ----
 		
 		else if (selection == 4)
 		{
-			g.quit(workerID);
+			g.quit(myWorker.getWorker_ID());
 			System.exit(0);
 		}
 		
 		return p;
 	}
 	
+	private void outputPatronHolds() {
+		
+		FakeDB db = new FakeDB();
+		Map<String, Patron> pStore = db.getPatronStore();
+		Gui g = new Gui();
+		//should return the patronStore from DB
+		g.outputMessage();
+		for(int i = 0; i < pStore.size(); i++)
+		{
+			
+			String id = "P";
+			id = id.concat(""+(i));
+			Patron p = pStore.get(id);
+			
+			//print patron holds
+			g.outputHolds(p);
+
+		}
+		
+	}
+	private void outputALLPatronHolds() {
+		
+		FakeDB db = new FakeDB();
+		Map<String, Patron> pStore = db.getPatronStore();
+		Gui g = new Gui();
+		//should return the patronStore from DB
+		g.outputMessageAfterManagerAction();
+		for(int i = 0; i < pStore.size(); i++)
+		{
+			
+			String id = "P";
+			id = id.concat(""+(i));
+			Patron p = pStore.get(id);
+			p.addHold();
+			
+			//print patron holds after managerial action
+			g.outputHoldsAgain(p);
+
+		}
+		
+	}
 	private void checkIn(Patron p, Gui g) 
 	{
 		endCheckout(p);
@@ -369,8 +442,14 @@ public class Workstation
 		
 		String myWorkerID = myWorker.getUsersWorker_ID();
 		
-		
+		//System.out.println("*****");
 		//Strange output "Designing SQL" originates here....
+		
+		if( myWorkerID.equals("M1"))
+		{
+			Manager myManager = new Manager(myWorkerID);
+			myWorker = myManager;
+		}
 		
 		myWorker.setWorker_ID(myWorkerID);
 		
@@ -395,33 +474,52 @@ public class Workstation
 		
 		//display menu 
 		int menuOption  = g.firstMenuOutput();
-
-		//get menu selection from user.
+		
 		if ((menuOption == 1) || (menuOption == 4))
 		{
-
-			p = myWorkStation.menuProcess(menuOption,p,myWorkerID);
+			
+			p = myWorkStation.menuProcess(menuOption,p,myWorker);
 			
 		}
 		else
 		{
-			while(menuOption != 1 && menuOption != 4)
+			while((menuOption != 1) && (menuOption != 4))
 			{
 				g.enterOption();
+				menuOption  = g.firstMenuOutput();
+				
 			}
+			
+			p = myWorkStation.menuProcess(menuOption,p,myWorker);
+				
 		}
-	
-		while (menuOption != 4)
+
+		//second menu output and user selection.
+		while(true)
 		{
-			//Output the menu again since checkout is complete.
+			//display menu and get user input
 			
 			menuOption = g.menuOutput();
-		
-			//get menu selection from user.
-		
-			p = myWorkStation.menuProcess(menuOption,p,myWorkerID);
+			//System.out.println("menu selection = " + menuOption);
 			
+			//process second menu selection from user.
+			if ((menuOption == 1) || (menuOption == 2)||(menuOption == 3)||(menuOption == 4))
+			{
+				p = myWorkStation.menuProcess(menuOption,p,myWorker);
+			
+			}
+			else
+			{
+				while(!((menuOption == 1) || (menuOption == 2)||(menuOption == 3)||(menuOption == 4)))
+				{
+					menuOption = g.menuOutput();
+			
+				}
+			
+				p = myWorkStation.menuProcess(menuOption,p,myWorker);
+			}
 		}
+		
 		
 	}
 

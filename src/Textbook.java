@@ -25,7 +25,7 @@ public class Textbook
 		class_ID = 0;
 		price_if_lost = 0.0;
 		
-
+		//due_date = new LocalDate(0, 0, 0);
 		
 	}
 	public Textbook(Textbook t2)
@@ -34,12 +34,16 @@ public class Textbook
 		
 		this.setText_title(t2.getText_title());
 		this.publisher_name = t2.getPublisher_name();
+		//this.num_in_inventory = t2.getNum_in_inventory();
 		
 		class_ID = t2.class_ID;
 		
 		price_if_lost = t2.getPrice_if_lost();
 		
+		//can textbook have an arraylist of copy objects??
+		///ArrayList<Copy> inventory = 
 		
+		// inherits this due_date = LocalDate.of(2017,8,30);
 	}
 	
 	public Textbook(String title, String nameOfPub,int num, int classID, double price, LocalDate date_is_due) 
@@ -47,7 +51,7 @@ public class Textbook
 		this.text_title = title;
 		this.publisher_name = nameOfPub;
 		
-
+		//this.num_in_inventory = num;
 		this.class_ID = classID;
 		
 		this.price_if_lost = price;
@@ -60,6 +64,18 @@ public class Textbook
 	{
 		return this.getText_title();
 	}
+	
+//	public void resetDue_date(LocalDate newDueDate)
+//	{
+//		this.due_date = newDueDate;
+//		//recalculate this.overdue
+//		if (checkIfOverdue())
+//			this.overDue = true;
+//		else
+//			this.overDue = false;
+//	}
+	
+
 	
 
 	

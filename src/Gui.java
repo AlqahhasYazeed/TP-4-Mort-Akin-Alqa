@@ -6,12 +6,29 @@ public class Gui
 {
 
 
-	public String outputNoManagerialAuthority()
+	public void outputNoManagerialAuthority()
 	{
 		String output = "";
-		output.concat("Sorry, you do not have managerial authority for this action.");
-		output.concat("\n You are a lowly, non-managerial human!   ");
-		return output;
+		StdOut.println("");
+		StdOut.println("Sorry, you do not have managerial authority for this action.");
+		StdOut.println("\n You are a lowly, non-managerial human!   ");
+		
+	}
+	public String getUsersWorker_ID() 
+	{
+	
+		String id = "";
+		
+		StdOut.print( "Hello, TRL system Worker.\n");
+		StdOut.println( "Note that non-managers cannot place holds on Patron accounts.\n");
+		StdOut.println("Please enter 'M1' (Manager_ID) or 'W1' (Worker_ID)\n" + "\n" + "Please enter your Worker ID# >> ");
+		id = StdIn.readLine();
+		
+		StdOut.print("Worker " + id + " is logged in.\n");
+		StdOut.print("\n");
+		
+		
+		return id;
 	}
 
 	public String enterPatronID()
@@ -35,6 +52,40 @@ public class Gui
 		StdOut.println( "--- Worker " + workerID + "  --------------------------" + "\n");
 		
 	}
+	public void outputHolds(Patron p)
+	{
+		String holds = "";
+		
+		if (p.checkHasHolds()  == true)
+		{
+			holds = "" + p.getPatron_name() + " has a hold on account!!!";
+		
+		}
+		else
+		{
+			holds = "" + p.getPatron_name() + " has no holds on account.";
+		}
+		System.out.println("" + holds);
+		
+	}
+	public void holds(Patron p)
+	{
+		String holds = "";
+		
+		if (p.checkHasHolds()  == true)
+		{
+			holds = "" + p.getPatron_name() + " has a hold on account!!!";
+		
+		}
+		else
+		{
+			holds = "" + p.getPatron_name() + " has no holds on account.";
+		}
+		System.out.println("" + holds);
+		
+	}
+	
+	
 	
 	public String outputHolds(boolean has_holds, ArrayList<Copy> copiesOut)
 	{
@@ -286,23 +337,71 @@ public class Gui
 	{
 		String output = ("");
 		
+		//if (!(p.getPatron_name().equals(null)) || !(p.getPatron_ID().equals(null)))
+		{
 		
+//		output = output.concat("   " + p.getPatron_name() + " " + p.getPatron_ID() + "\n");
+		
+		}
+		
+	//	if (!(p.getEmail().equals(null)) || !(p.getPhone().equals(null)))
+		{
+//			output = output.concat("Email: " + p.getEmail() + "Phone: " + p.getPhone() + "\n");
+//			output = output.concat("\n");
+		}
+		
+	//	if (p.getCopiesOut() != null)
+		{
+//			output = output.concat("" + p.checkHasHolds() + "\n");
+//			output = output.concat("" + p.getCopiesOut() + "\n");
+		}
+		
+		//outputPatronSchedule(p) ;
 		
 		return output;
 	}
 
-	public void enterOption() 
+	public int enterOption() 
 	{
 		StdOut.println(" ");
-		StdOut.println(" Please enter menu option 1 or 4.");
-		StdOut.println(" ");
+		StdOut.println(" Please enter menu option >>");
+		int option = StdIn.readInt();
 		
+		return option;
 	}
+	
 	public void quit(String workerID) 
 	{
 		StdOut.println(" ");
 		StdOut.println(workerID + " has exited the system.");
 		StdOut.println(" ");
+		
+	}
+	public void outputHoldsAgain(Patron p) {
+		
+	
+		StdOut.println(p.getPatron_name() + " has hold? " + p.getHold());
+
+	}
+	
+	public void outputMessage() {
+		
+		StdOut.println("///////////////////////////");
+		StdOut.println("    Current Account Holds");
+		StdOut.println("///////////////////////////");
+
+	}
+	public void outputMessageAfterManagerAction() {
+		
+		StdOut.println("//////////////////////////////////////////////////////////");
+		StdOut.println("    Holds after Manager places a hold on ALL patrons");
+		StdOut.println("///////////////////////////////////////////////////////////");
+
+	}
+	public void outputBooks(Textbook t)
+	{
+		
+			System.out.println(""+ t + " ");
 		
 	}
 
